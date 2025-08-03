@@ -43,8 +43,7 @@
             <hr class="custom-line" />
         </div>
 
-        <div class="section-container">
-            <!-- Header Section -->
+        <div class="section-container" id="scroll-target">
             <div class="section-header">
                 <h2 class="section-title">AMAN Finance Literacy</h2>
                 <div class="scroll-indicator">
@@ -52,8 +51,6 @@
                     <span>Scroll for more</span>
                 </div>
             </div>
-
-            <!-- Image Gallery Section -->
             <div class="image-gallery">
                 <div class="gallery-container">
                     <div class="gallery-item">
@@ -444,32 +441,24 @@
         </div>
 
         <script>
-            function scrollToTop() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                });
+            // Fungsi scroll ke elemen
+            function scrollToContent() {
+                // Cari elemen dengan id scroll-target
+                const target = document.getElementById("scroll-target");
+
+                // Jika elemen ditemukan, scroll ke sana
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth" });
+                } else {
+                    console.error("Element with ID 'scroll-target' not found.");
+                }
             }
         </script>
 
         <script>
-            function scrollToContent() {
-                const contentSection = document.getElementById("content");
-                contentSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                });
-            }
-
-            function scrollToNextSection() {
-                const heroHeight =
-                    document.querySelector(".hero-section").offsetHeight;
-                const heroTop =
-                    document.querySelector(".hero-section").offsetTop;
-                const scrollTarget = heroTop + heroHeight + 20; // 20px margin
-
+            function scrollToTop() {
                 window.scrollTo({
-                    top: scrollTarget,
+                    top: 0,
                     behavior: "smooth",
                 });
             }
