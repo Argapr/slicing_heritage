@@ -17,7 +17,7 @@ body {
 .hero-section {
     position: relative;
     height: 100vh;
-    background-image: url("assets/hero.jpg");
+    background-image: url("../assets/hero.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -574,23 +574,23 @@ body {
 }
 
 .card1 {
-    background-image: url("assets/businner-1.png");
+    background-image: url("../assets/businner-1.png");
 }
 
 .card2 {
-    background-image: url("assets/businner-2.png");
+    background-image: url("../assets/businner-2.png");
 }
 
 .card3 {
-    background-image: url("assets/businner-3.png");
+    background-image: url("../assets/businner-3.png");
 }
 
 .card4 {
-    background-image: url("assets/businner-4.png");
+    background-image: url("../assets/businner-4.png");
 }
 
 .card5 {
-    background-image: url("assets/businner-5.png");
+    background-image: url("../assets/businner-5.png");
 }
 
 hr.custom-line {
@@ -725,7 +725,7 @@ hr.custom-line {
 
 .hero-footer {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-        url("assets/hero-footer.png");
+        url("../assets/hero-footer.png");
     background-size: cover;
     background-position: center;
     height: 400px;

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Heritage Amanah - Login</title>
+        <link rel="stylesheet" href="../../styles/loginnumber.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+    </head>
+    <body>
+        <div class="login-container">
+            <div class="header">
+                <div class="logo">
+                    <img src="../../assets/logo-dark.png" alt="logo" />
+                </div>
+                <div class="language-toggle">
+                    <span>ID</span> | <span class="active">EN</span>
+                </div>
+            </div>
+
+            <h1 class="login-title">Login</h1>
+            <p class="login-subtitle">You can login with Phone Number</p>
+
+            <form>
+                <div class="form-group">
+                    <label class="form-label" for="phone">Phone Number</label>
+                    <div class="phone-input-container">
+                        <div class="country-code">
+                            <span class="dropdown-icon"
+                                ><i class="fa-solid fa-chevron-down"></i
+                            ></span>
+                            <p>+62</p>
+                        </div>
+                        <input
+                            type="tel"
+                            id="phone"
+                            class="phone-input"
+                            placeholder="81x-xxxx-xxxx"
+                            oninput="toggleButton()"
+                        />
+                    </div>
+                </div>
+
+                <div class="register-link">
+                    Don't Have An Account?
+                    <a
+                        href="#"
+                        onclick="alert('Register functionality would be implemented here')"
+                        >Register Here</a
+                    >
+                </div>
+
+                <button
+                    type="button"
+                    id="continueBtn"
+                    class="continue-btn"
+                    onclick="handleLogin()"
+                >
+                    Continue
+                </button>
+            </form>
+
+            <div class="footer">
+                <div class="licensed-by">
+                    <img src="../../assets/ojk-nobg.png" alt="ojk" />
+                    <p>
+                        PT Heritage Amanah International is licensed <br />
+                        and supervised by Otoritas Jasa Keuangan, <br />
+                        No. KEP-4/D.04/2017 dated February 27, 2017
+                    </p>
+                </div>
+
+                <div class="partner-logos">
+                    <img
+                        src="../../assets//komdigi_logo.png"
+                        alt="komdigi logo"
+                    />
+                </div>
+
+                <div class="member-of">
+                    Member of<br />
+                    <img src="../../assets/apii_logo_blue.png" alt="api" />
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function toggleButton() {
+                const phoneInput = document.getElementById("phone");
+                const continueBtn = document.getElementById("continueBtn");
+
+                if (phoneInput.value.trim().length > 0) {
+                    continueBtn.classList.add("active");
+                    continueBtn.style.cursor = "pointer";
+                } else {
+                    continueBtn.classList.remove("active");
+                    continueBtn.style.cursor = "not-allowed";
+                }
+            }
+
+            function handleLogin() {
+                const phoneInput = document.getElementById("phone");
+                const continueBtn = document.getElementById("continueBtn");
+
+                if (continueBtn.classList.contains("active")) {
+                    alert(`Login attempt with phone: ${phoneInput.value}`);
+                    // Here you would implement actual login logic
+                }
+            }
+
+            // Add some interactive effects
+            document
+                .querySelector(".phone-input")
+                .addEventListener("focus", function () {
+                    this.parentElement.style.borderColor = "#ff6b35";
+                });
+
+            document
+                .querySelector(".phone-input")
+                .addEventListener("blur", function () {
+                    this.parentElement.style.borderColor = "#ddd";
+                });
+        </script>
+    </body>
+</html>

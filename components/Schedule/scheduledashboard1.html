@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Heritage - My Profile</title>
+        <link rel="stylesheet" href="../../styles/schedule.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        />
+    </head>
+    <body>
+        <!-- Header Section -->
+        <div class="header">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="../../assets/logo.png" alt="" />
+                </div>
+                <div class="nav-icons">
+                    <i class="fas fa-bell"></i>
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+            <h1 class="page-title">My Profile</h1>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <div class="profile-header">
+                <div class="profile-avatar">F</div>
+                <div class="profile-info">
+                    <div class="info-group">
+                        <div class="info-label">Name</div>
+                        <div class="info-value">Farah Dini</div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Phone Number</div>
+                        <div class="info-value">0815 8574 4908</div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Email</div>
+                        <div class="info-value">Farah.Dini@gmail.com</div>
+                    </div>
+                    <button class="dashboard-btn">Go to Dashboard</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="schedule-container">
+            <h2 class="schedule-title">Schedule</h2>
+            <div class="schedule-content">
+                <div class="schedule-chart">
+                    <div class="time-header">
+                        <div class="time-label"></div>
+                        <!-- Spacer untuk label hari -->
+                        <div class="time-grid">
+                            <span class="time-slot">8:00</span>
+                            <span class="time-slot">9:00</span>
+                            <span class="time-slot">10:00</span>
+                            <span class="time-slot">11:00</span>
+                            <span class="time-slot">12:00</span>
+                            <span class="time-slot">13:00</span>
+                            <span class="time-slot">14:00</span>
+                        </div>
+                    </div>
+
+                    <div class="schedule-body">
+                        <div class="current-time-line"></div>
+                        <!-- Senin -->
+                        <div class="day-row">
+                            <div class="day-label">Mon</div>
+                            <div class="day-schedule">
+                            </div>
+                        </div>
+
+                        <!-- Selasa -->
+                        <div class="day-row">
+                            <div class="day-label">Tue</div>
+                            <div class="day-schedule"></div>
+                        </div>
+
+                        <!-- Rabu -->
+                        <div class="day-row">
+                            <div class="day-label">Wed</div>
+                            <div class="day-schedule"></div>
+                        </div>
+                    </div>
+
+                    <button class="setup-btn">Setup Your Schedule</button>
+                </div>
+
+                <!-- Calendar Section -->
+                <div class="calendar-section">
+                    <div class="calendar-header">
+                        <div class="calendar-nav">
+                            <button onclick="previousMonth()">‹</button>
+                        </div>
+                        <div class="calendar-title">August 2025</div>
+                        <div class="calendar-nav">
+                            <button onclick="nextMonth()">›</button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-day-header">SUN</div>
+                        <div class="calendar-day-header">MON</div>
+                        <div class="calendar-day-header">TUE</div>
+                        <div class="calendar-day-header">WED</div>
+                        <div class="calendar-day-header">THU</div>
+                        <div class="calendar-day-header">FRI</div>
+                        <div class="calendar-day-header">SAT</div>
+                        <!-- Tanggal akan di-generate otomatis -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="text" id="calendar-input" hidden />
+
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script>
+            const calendarInput = document.getElementById("calendar-input");
+            const calendarTitle = document.querySelector(".calendar-title");
+            const calendarGrid = document.querySelector(".calendar-grid");
+
+            let flatpickrInstance;
+
+            function renderCalendar(selectedDate = new Date()) {
+                const date = selectedDate;
+                const year = date.getFullYear();
+                const month = date.getMonth();
+
+                const monthNames = [
+                    "January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December",
+                ];
+                calendarTitle.textContent = `${monthNames[month]} ${year}`;
+
+                const oldDays = calendarGrid.querySelectorAll(
+                    ".calendar-day, .other-month"
+                );
+                oldDays.forEach((day) => day.remove());
+
+                const firstDay = new Date(year, month, 1).getDay();
+                const totalDays = new Date(year, month + 1, 0).getDate();
+
+                for (let i = 0; i < firstDay; i++) {
+                    const emptyDiv = document.createElement("div");
+                    emptyDiv.className = "calendar-day other-month";
+                    calendarGrid.appendChild(emptyDiv);
+                }
+
+                for (let day = 1; day <= totalDays; day++) {
+                    const div = document.createElement("div");
+                    div.className = "calendar-day";
+                    div.textContent = day;
+
+                    const today = new Date();
+                    if (
+                        day === today.getDate() &&
+                        month === today.getMonth() &&
+                        year === today.getFullYear()
+                    ) {
+                        div.classList.add("today");
+                    }
+
+                    calendarGrid.appendChild(div);
+                }
+            }
+
+            flatpickrInstance = flatpickr(calendarInput, {
+                defaultDate: new Date(),
+                onReady: function (selectedDates) {
+                    renderCalendar(selectedDates[0]);
+                },
+                onMonthChange: function (selectedDates) {
+                    const selectedDate =
+                        flatpickrInstance.selectedDates[0] || new Date();
+                    renderCalendar(selectedDate);
+                },
+                onYearChange: function (selectedDates) {
+                    const selectedDate =
+                        flatpickrInstance.selectedDates[0] || new Date();
+                    renderCalendar(selectedDate);
+                },
+            });
+
+            function previousMonth() {
+                let currentDate =
+                    flatpickrInstance.selectedDates[0] || new Date();
+                let prevMonth = new Date(
+                    currentDate.getFullYear(),
+                    currentDate.getMonth() - 1,
+                    1
+                );
+                flatpickrInstance.setDate(prevMonth, true);
+            }
+
+            function nextMonth() {
+                let currentDate =
+                    flatpickrInstance.selectedDates[0] || new Date();
+                let nextMonth = new Date(
+                    currentDate.getFullYear(),
+                    currentDate.getMonth() + 1,
+                    1
+                );
+                flatpickrInstance.setDate(nextMonth, true);
+            }
+        </script>
+    </body>
+</html>
